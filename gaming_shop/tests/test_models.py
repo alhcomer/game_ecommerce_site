@@ -14,3 +14,11 @@ class TestCategoriesModel(TestCase):
         """
         data = self.data
         self.assertTrue(isinstance(data, Category))
+        
+
+    def test_category_model_entry(self):
+        """
+        Test Category model return name
+        """
+        data = self.data
+        self.assertEqual(str(data), 'test')
