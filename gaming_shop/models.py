@@ -37,5 +37,6 @@ class Product(models.Model):
 
     class Meta:
         ordering = ('-created',)
-        def __string__(self):
-            self.title
+
+    def __str__(self):
+        return self.title
