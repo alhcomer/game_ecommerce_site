@@ -34,7 +34,7 @@ class TestProductModel(TestCase):
         self.category1 = Category.objects.create(name='action', slug='action')
         self.user1 = User.objects.create(username='admin')
         self.platform1 = Platform.objects.create(name='Xbox One')
-        self.data = Product.objects.create(category_id=self.category1.id, created_by_id=1, title="test game", description="a test game",
+        self.data = Product.objects.create(category_id=self.category1.id, created_by_id=self.user1.id, title="test game", description="a test game",
                                             slug='test game', price='20.00', image='test', developer='test', publisher='test',
                                             in_stock=True, is_active=True, release_date=str(date.today()))
         
