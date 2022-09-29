@@ -20,15 +20,15 @@ class Platform(models.Model):
 class Product(models.Model):
     category = models.ForeignKey(Category, related_name='product', on_delete=models.CASCADE)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='product_creator')
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255, unique=True)
     description = models.TextField(blank=True)
     image = models.ImageField(upload_to='images/')
     developer = models.CharField(max_length=255)
     publisher = models.CharField(max_length=255)
     # TODO: change so that there can be numerous platforms for a single product
-    platforms = models.ManyToManyField(Platform, blank=True)
+    platforms = models.ManyToManyField(Platform, blank=True, related_name="product")
     release_date = models.DateField(blank=True)
-    slug = models.SlugField(max_length=255)
+    slug = models.SlugField(max_length=255, unique=True)
     price = models.DecimalField(max_digits=5, decimal_places=2)
     in_stock = models.BooleanField(default=True)
     is_active = models.BooleanField(default=True)
