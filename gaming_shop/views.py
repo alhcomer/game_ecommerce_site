@@ -5,3 +5,8 @@ from .models import Category, Product, Platform
 def index(request):
     products = Product.objects.all()
     return render(request, 'gaming_shop/index.html', {'products': products})
+
+def categories(request):
+    return {
+        'categories': Category.objects.all()
+    }
