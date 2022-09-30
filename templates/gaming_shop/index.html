@@ -16,7 +16,7 @@
           
 
           <div class="card-body">
-            <div class="card-title">{{ p.title|title }}</div>
+            <div class="card-title"><a href="{{ p.get_absolute_url }}">{{ p.title|title }}</a></div>
             <p class="card-text">
                 {{ p.description|truncatewords:25 }}
             </p>

@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
+
 
 
 class Category(models.Model):
@@ -38,5 +40,8 @@ class Product(models.Model):
     class Meta:
         ordering = ('-created',)
 
+    def get_absolute_url(self):
+        return reverse("shop:product_item", args=[self.slug])
+    
     def __str__(self):
         return self.title
