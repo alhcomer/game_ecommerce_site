@@ -14,3 +14,8 @@ def categories(request):
 def product_item(request, slug):
     product = get_object_or_404(Product, slug=slug, in_stock=True)
     return render(request, 'gaming_shop/products/game_item.html', {'product': product})
+
+def category_list(request, category_slug):
+    category = get_object_or_404(Category, slug=category_slug)
+    products = Product.objects.filter(category=category)
+    return render(request, 'gaming_shop/products/category.html', {'category': category, 'products': products})

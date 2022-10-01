@@ -9,4 +9,5 @@ app_name = 'shop'
 urlpatterns = [
     path('', views.index, name='index'),
     path('game/<slug:slug>', views.product_item, name='product_item'),
+    path('search/<slug:category_slug>/', views.category_list, name='category_list')
 ]
