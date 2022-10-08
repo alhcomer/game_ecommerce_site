@@ -15,7 +15,7 @@ class TestViewResponses(TestCase):
                                             slug='test_game', price='20.00', image='test', developer='test', publisher='test',
                                             in_stock=True, is_active=True, release_date=str(date.today()))
 
-        self.product2 = self.product1 = Product.objects.create(category_id=self.category1.id, created_by_id=self.user1.id, title="test game2", description="a test game",
+        self.product2 = Product.objects.create(category_id=self.category1.id, created_by_id=self.user1.id, title="test game2", description="a test game",
                                             slug='test_game2', price='30.00', image='test', developer='test', publisher='test',
                                             in_stock=True, is_active=True, release_date=str(date.today()))
 
@@ -35,3 +35,7 @@ class TestViewResponses(TestCase):
         products = Product.objects.all()
         response = self.c.get(reverse('shop:index'))
         self.assertQuerysetEqual(response.context['products'], products)
+
+    def test_product_item_page(self):
+        response = self.c.get(reverse("shop:product_item", args=[self.product1.slug]))
+        self.assertEqual(response.context['product'], self.product1)
