@@ -39,3 +39,6 @@ class TestViewResponses(TestCase):
     def test_product_item_page(self):
         response = self.c.get(reverse("shop:product_item", args=[self.product1.slug]))
         self.assertEqual(response.context['product'], self.product1)
+        #TODO: amend test so that coverage sees above test as passing
+
+    #TODO: add test for category_list view
