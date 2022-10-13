@@ -37,8 +37,9 @@ class TestViewResponses(TestCase):
         self.assertQuerysetEqual(response.context['products'], products)
 
     def test_product_item_page(self):
-        response = self.c.get(reverse("shop:product_item", args=[self.product1.slug]))
-        self.assertEqual(response.context['product'], self.product1)
+        product = Product.objects.first()
+        response = self.c.get(reverse("shop:product_item", args=[product.slug]))
+        self.assertEqual(response.context['product'], product)
         self.assertEqual(response.status_code, 200)
         #TODO: amend test so that coverage sees above test as passing
 
