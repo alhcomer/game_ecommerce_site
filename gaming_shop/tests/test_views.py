@@ -4,6 +4,8 @@ from unittest import skip
 from django.contrib.auth.models import User
 from gaming_shop.models import Category, Product
 from datetime import date
+from django.http import HttpRequest
+from gaming_shop.views import index
 
 
 class TestViewResponses(TestCase):
@@ -35,6 +37,8 @@ class TestViewResponses(TestCase):
         products = Product.objects.all()
         response = self.c.get(reverse('shop:index'))
         self.assertQuerysetEqual(response.context['products'], products)
+        self.assertEqual(response.status_code, 200)
+
 
     def test_product_item_page(self):
         product = Product.objects.first()
@@ -42,5 +46,14 @@ class TestViewResponses(TestCase):
         self.assertEqual(response.context['product'], product)
         self.assertEqual(response.status_code, 200)
         #TODO: amend test so that coverage sees above test as passing
+        #TODO: may need to fix this test
 
     #TODO: add test for category_list view
+
+    def test_index_html(self):
+        request = HttpRequest()
+        response = index(request)
+        html = response.content.decode('utf8')
+        self.assertIn('<title> Home </title>', html)
+        self.assertTrue(html.startswith('\n\n<!DOCTYPE html>\n'))
+        self.assertEqual(response.status_code, 200)
