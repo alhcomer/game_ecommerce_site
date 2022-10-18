@@ -1,5 +1,5 @@
 from django.urls import reverse
-from django.test import TestCase, Client
+from django.test import TestCase, Client, RequestFactory
 from unittest import skip
 from django.contrib.auth.models import User
 from gaming_shop.models import Category, Product
@@ -11,6 +11,7 @@ from gaming_shop.views import index
 class TestViewResponses(TestCase):
     def setUp(self):
         self.c = Client()
+        self.factory = RequestFactory()
         self.user1 = User.objects.create(username="admin")
         self.category1 = Category.objects.create(name='Action', slug='Action')
         self.product1 = Product.objects.create(category_id=self.category1.id, created_by_id=self.user1.id, title="test game", description="a test game",
@@ -52,6 +53,14 @@ class TestViewResponses(TestCase):
 
     def test_index_html(self):
         request = HttpRequest()
+        response = index(request)
+        html = response.content.decode('utf8')
+        self.assertIn('<title> Home </title>', html)
+        self.assertTrue(html.startswith('\n\n<!DOCTYPE html>\n'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_view_function(self):
+        request = self.factory.get('/game/test_game')
         response = index(request)
         html = response.content.decode('utf8')
         self.assertIn('<title> Home </title>', html)
