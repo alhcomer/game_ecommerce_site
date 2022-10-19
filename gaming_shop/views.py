@@ -6,10 +6,7 @@ def index(request):
     products = Product.objects.all()
     return render(request, 'gaming_shop/index.html', {'products': products})
 
-def categories(request):
-    return {
-        'categories': Category.objects.all()
-    }
+
 
 def product_item(request, slug):
     product = get_object_or_404(Product, slug=slug, in_stock=True)
