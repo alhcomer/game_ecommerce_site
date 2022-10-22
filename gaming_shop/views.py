@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from .models import Category, Product, Platform
 
 def index(request):
-    products = Product.objects.all()
+    products = Product.products.all()
     return render(request, 'gaming_shop/index.html', {'products': products})
 
 
