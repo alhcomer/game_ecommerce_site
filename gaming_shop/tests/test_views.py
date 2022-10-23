@@ -66,3 +66,12 @@ class TestViewResponses(TestCase):
         self.assertIn('<title> Home </title>', html)
         self.assertTrue(html.startswith('\n\n<!DOCTYPE html>\n'))
         self.assertEqual(response.status_code, 200)
+
+    def test_url_allowed_hosts(self):
+        """
+        Test allowed hosts
+        """
+        response = self.c.get('/', HTTP_HOST="none.com")
+        self.assertEqual(response.status_code, 400)
+        response = self.c.get('/', HTTP_HOST="gamestation.com")
+        self.assertEqual(response.status_code, 200)
