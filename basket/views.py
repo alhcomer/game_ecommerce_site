@@ -19,6 +19,5 @@ def basket_add(request):
         product_qty = int(request.POST.get('productqty'))
         product = get_object_or_404(Product, id=product_id)
         basket.add(product=product, quantity=product_qty)
-        
-        response = JsonResponse({'test': 'data'})
+        response = JsonResponse({'quantity': product_qty})
         return response

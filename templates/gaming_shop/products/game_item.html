@@ -58,6 +58,7 @@
                 action: 'POST'
             },
             success: function (json){
+                document.getElementById("basket-quantity").innerHTML = json.quantity
 
             },
             error: function (xhr, errmsg, err) {}
