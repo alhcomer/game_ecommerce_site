@@ -13,7 +13,7 @@ class Basket:
     def add(self, product):
         product_id = product.id
         if product_id not in self.basket:
-            self.basket[product_id] = {'price': product.price}
+            self.basket[product_id] = {'price': float(product.price)}
 
         self.session.modified = True
 
