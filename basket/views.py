@@ -5,6 +5,7 @@ from gaming_shop.models import Product
 
 
 def basket_summary(request):
+
     return render(request, 'basket/summary.html')
 
 def basket_add(request):
