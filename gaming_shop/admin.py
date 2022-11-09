@@ -11,7 +11,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['title', 'description', 'slug', 'price', 
+    list_display = ['title', 'description', 'category', 'slug', 'price', 
                     'developer', 'publisher', 'created',
                     'updated', 'in_stock', 'is_active']
     list_filter = ['in_stock', 'is_active']
