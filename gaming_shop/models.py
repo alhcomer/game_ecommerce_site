@@ -33,7 +33,7 @@ class Product(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='product_creator')
     title = models.CharField(max_length=255, unique=True)
     description = models.TextField(blank=True)
-    image = models.ImageField(upload_to='images/', default="images/default.png")
+    image = models.ImageField(upload_to='images/', default="images/default.jpg")
     developer = models.CharField(max_length=255)
     publisher = models.CharField(max_length=255)
     # TODO: change so that there can be numerous platforms for a single product
