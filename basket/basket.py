@@ -15,8 +15,7 @@ class Basket:
     def add(self, product, quantity):
         product_id = product.id
         if product_id not in self.basket:
-            self.basket[str(product_id)] = {'price': str(product.price), 'quantity': int(quantity), 'image_url': str(product.image.url)}
-
+            self.basket[str(product_id)] = {'price': str(product.price), 'quantity': int(quantity), 'image_url': str(product.image.url), 'title' : str(product.title)}
         self.session.modified = True
     
     def __len__(self):
