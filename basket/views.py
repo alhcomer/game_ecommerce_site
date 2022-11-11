@@ -19,3 +19,9 @@ def basket_add(request):
         response = JsonResponse({'quantity': basket_quantity})
         print(basket.basket)
         return response
+
+def basket_remove(request): 
+    basket = Basket(request)
+    if request.POST.get('action') == 'DELETE':
+        product_id = int(request.POST.get('productid'))
+        return product_id
