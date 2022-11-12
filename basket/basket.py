@@ -1,3 +1,6 @@
+from django.shortcuts import get_object_or_404
+from gaming_shop.models import Product
+
 class Basket:
     """
     Base class for basket
@@ -23,4 +26,7 @@ class Basket:
         Counts quantity of items in basket
         """
         return sum(item['quantity'] for item in self.basket.values())
-
+    
+    def remove(self, product_id):
+        self.basket.__delitem__
+        # TODO: Need to write method to delete item

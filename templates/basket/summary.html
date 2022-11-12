@@ -47,7 +47,7 @@
                         </div>
                         <div class="d-flex flex-row align-items-center">
                           <div style="width: 50px;">
-                            <p class="mb-0"><a href="#!" id="remove-btn" value="{{ product.id }}" class="text-body">Remove<i class="fas fa-angle-down mt-1"></i></a></p>
+                            <p class="mb-0"><a href="#!" id="remove-button" value="{{ product.id }}" class="text-body">Remove<i class="fas fa-angle-down mt-1"></i></a></p>
                           </div>
                           <div style="width: 80px;">
                             <h5 class="mb-0">£{{ value.price }}</h5>
@@ -151,7 +151,7 @@
 </section>
 
 <script>
-    $(document).on('click', '#add-button', function (e) {
+    $(document).on('click', '#remove-button', function (e) {
         e.preventDefault();
         $.ajax({
             type: 'POST',
