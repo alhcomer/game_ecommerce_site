@@ -28,5 +28,4 @@ class Basket:
         return sum(item['quantity'] for item in self.basket.values())
     
     def remove(self, product_id):
-        self.basket.__delitem__
-        # TODO: Need to write method to delete item
+        del self.basket[str(product_id)]

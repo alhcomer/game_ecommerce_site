@@ -23,5 +23,6 @@ def basket_add(request):
 def basket_remove(request): 
     basket = Basket(request)
     if request.POST.get('action') == 'DELETE':
-        product_id = int(request.POST.get('productid'))
+        product_id = str(request.POST.get('productid'))
+        basket.remove(product_id=product_id)
         return product_id
