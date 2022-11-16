@@ -31,7 +31,7 @@
                   </div>
   
                   {% for key, value in basket.basket.items %}
-                  <div class="card mb-3 mb-lg-0 card_{{ product.id }}">
+                  <div class="card mb-3 mb-lg-0 card_{{ key }}">
                     <div class="card-body">
                       <div class="d-flex justify-content-between">
                         <div class="d-flex flex-row align-items-center">
@@ -48,7 +48,7 @@
                         <div class="d-flex flex-row align-items-center">
                           <div style="width: 50px;">
                             <p class="mb-0">
-                              <button type="button" class="btn btn-dark" id="remove-button" value="{{ product.id }}">
+                              <button type="button" class="btn btn-dark" id="remove-button" value="{{ key }}">
                               Remove
                             </button>
                           </p>
@@ -158,13 +158,14 @@
     $(document).on('click', '#remove-button', function (e) {
         e.preventDefault();
         $.ajax({
-            type: 'DELETE',
-            url: '{% url "basket:basket_remove" %}'
+            url: '{% url "basket:basket_remove" %}',
+            type: 'POST'
             data: {
                 productid: $('#remove-button').val(),
-                action: 'DELETE'
-            }
-            success: function (id){
+                csrfmiddlewaretoken: "{{ csrf_token }}",
+                action: 'POST',
+            },
+            success: function (json){
                 $('card_'+id).remove()
             },
             

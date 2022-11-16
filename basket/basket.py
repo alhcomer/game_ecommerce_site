@@ -12,7 +12,6 @@ class Basket:
         if 'session_key' not in request.session:
             basket = self.session['session_key'] = {}
         self.basket = basket
-        print(basket)
         
 
     def add(self, product, quantity):
@@ -29,3 +28,6 @@ class Basket:
     
     def remove(self, product_id):
         del self.basket[str(product_id)]
+    
+    def get_total_price():
+        pass
