@@ -24,6 +24,7 @@ def basket_remove(request):
     basket = Basket(request)
     if request.POST.get('action') == 'POST':
         product_id = str(request.POST.get('productid'))
+        print(product_id)
         basket.remove(product_id=product_id)
         basket_qty = basket.__len__()
         basket_price = basket.get_total_price()
