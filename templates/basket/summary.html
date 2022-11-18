@@ -31,7 +31,7 @@
                   </div>
   
                   {% for key, value in basket.basket.items %}
-                  <div class="card mb-3 mb-lg-0 card_{{ key }}">
+                  <div class="card mb-3 mb-lg-0 card{{ key }}">
                     <div class="card-body">
                       <div class="d-flex justify-content-between">
                         <div class="d-flex flex-row align-items-center">
@@ -166,7 +166,7 @@
                 action: 'POST',
             },
             success: function (json){
-                $('card_'+id).remove()
+                $('div').remove('.card'+json.productid)
             },
             
             error: function (xhr, errmsg, err) {
