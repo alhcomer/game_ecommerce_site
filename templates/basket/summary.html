@@ -167,6 +167,7 @@
             },
             success: function (json){
                 $('div').remove('.card'+json.productid)
+                document.getElementById("basket-quantity").innerHTML = json.quantity
             },
             
             error: function (xhr, errmsg, err) {
