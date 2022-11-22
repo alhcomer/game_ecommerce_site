@@ -13,11 +13,11 @@ def basket_add(request):
     if request.POST.get('action') == 'POST':
         product_id = int(request.POST.get('productid'))
         product_qty = int(request.POST.get('productqty'))
+        platform = str(request.POST.get('platform'))
         product = get_object_or_404(Product, id=product_id)
-        basket.add(product=product, quantity=product_qty)
+        basket.add(product=product, quantity=product_qty, platform=platform)
         basket_quantity = basket.__len__()
         response = JsonResponse({'quantity': basket_quantity})
-        print(basket.basket)
         return response
 
 def basket_remove(request):

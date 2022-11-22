@@ -12,13 +12,14 @@ class Basket:
         if 'session_key' not in request.session:
             basket = self.session['session_key'] = {}
         self.basket = basket
+        print(self.basket)
         
 
-    def add(self, product, quantity):
+    def add(self, product, quantity, platform):
         product_id = product.id
         if product_id not in self.basket:
             # NEED TO ADD PLATFORM OF PRODUCT TO BASKET
-            self.basket[str(product_id)] = {'price': str(product.price), 'quantity': int(quantity), 'image_url': str(product.image.url), 'title': str(product.title)}
+            self.basket[str(product_id)] = {'price': str(product.price), 'quantity': int(quantity), 'image_url': str(product.image.url), 'title': str(product.title), 'platform': str(platform)}
         self.session.modified = True
     
     def __len__(self):
