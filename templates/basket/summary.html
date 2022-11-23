@@ -22,14 +22,16 @@
                   <div class="d-flex justify-content-between align-items-center mb-4">
                     <div>
                       <p class="mb-1">Shopping cart</p>
-                      <p class="mb-0">You have 
-                      {% with total_quantity=basket|length %}
-                        {% if total_quantity > 0 %}
-                            {{ total_quantity }}
-                        {% else %}
-                            0
-                        {% endif %}
-                      {% endwith %}
+                      <p class="mb-0">You have
+                        <span id="cart-total">
+                          {% with total_quantity=basket|length %}
+                            {% if total_quantity > 0 %}
+                                {{ total_quantity }} 
+                            {% else %}
+                                0
+                            {% endif %}
+                          {% endwith %}
+                        </span>
                       items in your cart</p>
                     </div>
                     <div>
@@ -183,6 +185,7 @@
             success: function (json){
                 $('div').remove('.card'+json.productid)
                 document.getElementById("basket-quantity").innerHTML = json.quantity
+                document.getElementById("cart-total").innerHTML = json.quantity
             },
             
             error: function (xhr, errmsg, err) {
