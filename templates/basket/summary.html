@@ -22,7 +22,15 @@
                   <div class="d-flex justify-content-between align-items-center mb-4">
                     <div>
                       <p class="mb-1">Shopping cart</p>
-                      <p class="mb-0">You have 4 items in your cart</p>
+                      <p class="mb-0">You have 
+                      {% with total_quantity=basket|length %}
+                        {% if total_quantity > 0 %}
+                            {{ total_quantity }}
+                        {% else %}
+                            0
+                        {% endif %}
+                      {% endwith %}
+                      items in your cart</p>
                     </div>
                     <div>
                       <p class="mb-0"><span class="text-muted">Sort by:</span> <a href="#!"
@@ -120,12 +128,22 @@
   
                       <div class="d-flex justify-content-between">
                         <p class="mb-2">Subtotal</p>
+                        {% if basket|length > 0 %}
                         <p class="mb-2">£{{ basket.get_total_price }}</p>
+                        {% else %}
+                        <p class="mb-2">£0.00</p>
+                        {% endif %}
+
                       </div>
   
                       <div class="d-flex justify-content-between mb-4">
                         <p class="mb-2">Total (Incl. VAT)</p>
+                        {% if basket|length > 0 %}
                         <p class="mb-2">£{{ basket.get_total_price }}</p>
+                        {% else %}
+                        <p class="mb-2">£0.00</p>
+                        {% endif %}
+
                       </div>
   
                       <button type="button" class="btn btn-info btn-block btn-lg">
@@ -149,6 +167,8 @@
     </div>
 </section>
 
+
+{% comment %} TODO: Need to update basket quantity and price upon basket item removal {% endcomment %}
 <script>
     $(document).on('click', '#remove-button', function (e) {
         e.preventDefault();

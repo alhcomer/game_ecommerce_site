@@ -41,5 +41,6 @@ class Basket:
         for value in self.basket.values():
             item_price = float(value['price']) * value['quantity']
             total_price += item_price
-            total_price_formatted = "{:.2f}".format(total_price)
+            
+        total_price_formatted = "{:.2f}".format(total_price)
         return total_price_formatted
