@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "gaming_shop",
     'basket',
+    'login',
 ]
 
 MIDDLEWARE = [

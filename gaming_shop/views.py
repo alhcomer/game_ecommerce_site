@@ -17,5 +17,3 @@ def category_list(request, category_slug):
     products = Product.objects.filter(category=category)
     return render(request, 'gaming_shop/products/category.html', {'category': category, 'products': products})
 
-def login(request):
-    return render(request, 'gaming_shop/login.html')

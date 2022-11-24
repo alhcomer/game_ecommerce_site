@@ -21,7 +21,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', include('gaming_shop.urls', namespace='shop')),
     path("admin/", admin.site.urls),
-    path('basket/', include('basket.urls', namespace='basket'))
+    path('basket/', include('basket.urls', namespace='basket')),
+    path('login/', include('login.urls', namespace='login')),
 ]
 
 if settings.DEBUG:
