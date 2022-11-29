@@ -2,8 +2,17 @@
 {% load static %} 
 {% block title %} Login {% endblock title %} 
 
-
 {% block content %}
+<section class="h-100 h-custom" style="background-color: #eee;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+        <div class="card">
+          <div class="card-body p-4">
+
+            <div class="row">
+
+
 <!-- Pills navs -->
 <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
     <li class="nav-item" role="presentation">
@@ -140,12 +149,24 @@
             I have read and agree to the terms
           </label>
         </div>
-  
+        
+        <div class="row-mb-4">
+          <div class="col-md-6 d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary">Sign out</button>
+          </div>
+        </div>
         <!-- Submit button -->
-        <button type="submit" class="btn btn-primary btn-block mb-3">Sign in</button>
+
+
       </form>
     </div>
   </div>
   <!-- Pills content -->
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
 
-  {% endblock content %} 
+{% endblock content %} 
