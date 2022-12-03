@@ -2,6 +2,7 @@ from email.policy import default
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from game_ecommerce_site.settings import AUTH_USER_MODEL
 
 class ProductManager(models.Manager):
     def get_queryset(self):
@@ -30,7 +31,7 @@ class Platform(models.Model):
 
 class Product(models.Model):
     category = models.ForeignKey(Category, related_name='product', on_delete=models.CASCADE)
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='product_creator')
+    created_by = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='product_creator')
     title = models.CharField(max_length=255, unique=True)
     description = models.TextField(blank=True)
     image = models.ImageField(upload_to='images/', default="images/default.jpg")
