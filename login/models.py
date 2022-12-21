@@ -44,8 +44,8 @@ class UserBase(AbstractBaseUser, PermissionsMixin):
     objects = CustomAccountManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username', 'first_name', 'first_name'
-                        'last_name', 'country', 'phone_number'
+    REQUIRED_FIELDS = ['username', 'first_name',
+                        'last_name', 'country', 'phone_number',
                         'town_city',]
 
     class Meta:
