@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "gaming_shop",
     'basket',
     'login',
+    'django_countries'
 ]
 
 MIDDLEWARE = [
