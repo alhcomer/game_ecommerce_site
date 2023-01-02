@@ -144,3 +144,5 @@ MEDIA_URL='/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 AUTH_USER_MODEL = 'login.UserBase'
+LOGIN_REDIRECT_URL = '/login/dashboard'
+LOGIN_URL = '/login/login'
