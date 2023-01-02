@@ -3,6 +3,7 @@ from django.contrib.auth.models import (AbstractBaseUser, BaseUserManager, Permi
 from django_countries.fields import CountryField
 from django.utils.translation import gettext_lazy as _
 from django.db import models
+from phonenumber_field.modelfields import PhoneNumberField
 
 class CustomAccountManager(BaseUserManager):
     def create_superuser(self, email, username, password, **other_fields):
@@ -35,7 +36,7 @@ class UserBase(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=150, blank=True)
     last_name = models.CharField(max_length=150, blank=True)
     country = CountryField()
-    phone_number = models.CharField(max_length=12, blank=True)
+    phone_number = PhoneNumberField(null=False, blank=False, unique=True)
     town_city = models.CharField(max_length=150, blank=True)
     is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
