@@ -1,0 +1,12 @@
+{% autoescape off %}
+Hello {{ user.username }},
+
+Thankyou for making an account with GameStation!
+
+Please click the link below to activate your account:
+
+http://{{ domain }}{% url 'login:authenticate' uidb64=uidb64 token=token %}
+
+We hope you enjoy what's on offer!
+
+{% endautoescape %}
