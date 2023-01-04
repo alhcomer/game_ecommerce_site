@@ -5,10 +5,10 @@ def login(request):
     return render(request, 'login/login.html')
 
 def sign_up(request):
-    if request.user.is_authenticated:
-        return redirect('/')
+    # if request.user.is_authenticated:
+    #     return redirect('/')
         #TODO: redirect to user dashboard after creations instead of home page
-    elif request.method == 'POST':
+    if request.method == 'POST':
         registration_form = RegistrationForm(request.POST)
         if registration_form.is_valid():
             user = registration_form.save(commit=False)
