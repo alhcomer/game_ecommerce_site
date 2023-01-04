@@ -11,7 +11,20 @@
                 <div class="card">
                     <div class="card-body p-4">
                         <div class="row text-center">
-                            <form>
+                            <form class="account-form p-4 rounded col-lg-10 mx-auto" action="." method="post">
+                              {% if form.errors %}
+                              <p>There are some issues with the details your provided: </p>
+                              {% for field in form %}
+                              {% if field.errors %}
+                              <div class="alert alert-primary" role="alert">
+                                {{ field.label }}:  {{ field.errors|striptags}}
+                              </div>
+                              {% endif %}
+                              {% endfor %}
+                              {% endif %}
+
+
+                              {% csrf_token %}
                                 <div class="text-center mb-3">
                                   <p>Sign up with:</p>
                                   <button type="button" class="btn btn-link btn-floating mx-1">
@@ -33,53 +46,72 @@
                           
                                 <p class="text-center">or:</p>
                           
-                                <!-- Name input -->
+                                <!-- First Name input -->
                                 <div class="col-md-4 offset-md-4">
                                   <div class="form-outline mb-4">
-                                    <input type="text" id="registerName" class="form-control" />
-                                    <label class="form-label" for="registerName">Name</label>
+                                    <label class="form-label">{{ form.first_name.label }}</label>
+                                    {{ form.first_name }}                
                                   </div>
                                 </div>
-                          
-                                <!-- Username input -->
+
+                                <!-- Last Name input -->
+
                                 <div class="col-md-4 offset-md-4">
                                   <div class="form-outline mb-4">
-                                    <input type="text" id="registerUsername" class="form-control" />
-                                    <label class="form-label" for="registerUsername">Username</label>
+                                    <label class="form-label">{{ form.last_name.label }}</label>
+                                    {{ form.last_name }}                
                                   </div>
                                 </div>
-                          
+
                                 <!-- Email input -->
                                 <div class="col-md-4 offset-md-4">
                                   <div class="form-outline mb-4">
-                                    <input type="email" id="registerEmail" class="form-control" />
-                                    <label class="form-label" for="registerEmail">Email</label>
+                                    <label class="form-label">{{ form.email.label }}</label>
+                                    {{ form.email }}
                                   </div>
                                 </div>
-                          
+
+                                <!-- Date of Birth input -->
+                                 <div class="col-md-4 offset-md-4">
+                                  <div class="form-outline mb-4">
+                                    <label class="form-label">{{ form.date_of_birth.label }}</label>
+                                    {{ form.date_of_birth }}
+                                  </div>
+                                </div>
+
+
+                                <!-- Country input -->
+                                <div class="col-md-4 offset-md-4">
+                                  <div class="form-outline mb-4">
+                                    <label class="form-label">{{ form.country.label }}</label>
+                                    {{ form.country }}
+                                  </div>
+                                </div>
+
                                 <!-- Password input -->
                                 <div class="col-md-4 offset-md-4">
                                   <div class="form-outline mb-4">
-                                    <input type="password" id="registerPassword" class="form-control" />
-                                    <label class="form-label" for="registerPassword">Password</label>
+                                    <label class="form-label" for="registerPassword">{{ form.password.label }}</label>
+                                    {{ form.password }}
                                   </div>
                                 </div>
+
+                                
                           
                                 <!-- Repeat Password input -->
                                 <div class="col-md-4 offset-md-4">
                                   <div class="form-outline mb-4">
-                                    <input type="password" id="registerRepeatPassword" class="form-control" />
-                                    <label class="form-label" for="registerRepeatPassword">Repeat password</label>
+                                    <label class="form-label" for="registerRepeatPassword">{{ form.password2.label }}</label>
+                                    {{ form.password2 }}
                                   </div>
                                 </div>
                           
                                 <!-- Checkbox -->
                                 <div class="form-check d-flex justify-content-center mb-4">
-                                  <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked
-                                    aria-describedby="registerCheckHelpText" />
                                   <label class="form-check-label" for="registerCheck">
-                                    I have read and agree to the terms
+                                    {{ form.terms.label }}
                                   </label>
+                                  {{ form.terms }}
                                 </div>
                           
                                 <!-- Submit button -->
@@ -94,3 +126,9 @@
     </div>
 </section>
 {% endblock content %}
+
+{% block js %}
+
+
+
+{% endblock js %}

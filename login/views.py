@@ -12,12 +12,12 @@ def sign_up(request):
         registration_form = RegistrationForm(request.POST)
         if registration_form.is_valid():
             user = registration_form.save(commit=False)
-            user.username = registration_form.cleaned_data['username']
             user.email = registration_form.cleaned_data['email']
             user.first_name = registration_form.cleaned_data['first_name']
             user.last_name = registration_form.cleaned_data['last_name']
             user.set_password(registration_form.cleaned_data['password'])
             user.country = registration_form.cleaned_data['country']
+            user.date_of_birth = registration_form.cleaned_data['date_of_birth']
             user.phone_number = registration_form.cleaned_data['phone_number']
             user.town_city = registration_form.cleaned_data['town_city']
             user.is_active = False

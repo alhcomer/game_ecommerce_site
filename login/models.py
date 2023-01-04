@@ -32,22 +32,21 @@ class CustomAccountManager(BaseUserManager):
 class UserBase(AbstractBaseUser, PermissionsMixin):
 
     email = models.EmailField(_('email address'), unique=True)
-    username = models.CharField(max_length=150, unique=True)
     first_name = models.CharField(max_length=150, blank=True)
     last_name = models.CharField(max_length=150, blank=True)
     country = CountryField()
+    date_of_birth = models.DateField(max_length=8)
     phone_number = PhoneNumberField(null=False, blank=False, unique=True)
     town_city = models.CharField(max_length=150, blank=True)
     is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now=True)
-
     objects = CustomAccountManager()
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username', 'first_name',
-                        'last_name', 'country', 'phone_number',
-                        'town_city',]
+                        'last_name', 'country', 'phone_number', 
+                        'date_of_birth', 'town_city',]
 
     class Meta:
         verbose_name = "Accounts"
