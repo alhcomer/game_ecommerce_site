@@ -1,5 +1,10 @@
 from django.shortcuts import render, redirect
 from .forms import RegistrationForm
+from phonenumber_field.phonenumber import PhoneNumber
+from django.contrib.sites.shortcuts import get_current_site
+from django.template.loader import render_to_string
+from django.utils.http import urlsafe_base64_encode
+from django.utils.encoding import force_bytes
 
 def login(request):
     return render(request, 'login/login.html')

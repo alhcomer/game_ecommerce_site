@@ -3,6 +3,8 @@ from .models import UserBase
 from django_countries import widgets, countries
 from phonenumber_field.formfields import PhoneNumberField
 from django.forms.widgets import DateInput
+from phonenumber_field.widgets import PhoneNumberPrefixWidget
+
 
 
 class RegistrationForm(forms.ModelForm):
@@ -37,11 +39,14 @@ class RegistrationForm(forms.ModelForm):
         widget=widgets.CountrySelectWidget, choices=countries,
         error_messages={'required': 'Please choose your country.'}
         )
-    phone_number = PhoneNumberField(widget=forms.TextInput(
-        attrs={'placeholder': 'Phone Number'}),
-        label="Phone Number", help_text='Required', 
-        error_messages={'required': 'Please enter a valid phone number.'}
+        # TODO: need to finish phone number widget validation
+        # https://django-phonenumber-field.readthedocs.io/en/latest/reference.html#widgets
+    phone_number = PhoneNumberField(
+        label="Phone Number",
+        widget=PhoneNumberPrefixWidget(   
+            )
         )
+    phone_number.error_messages['invalid'] = 'Invalid Mobile Number'
     town_city = forms.CharField(label="City", min_length=2, max_length=100, help_text='Required')
     terms = forms.BooleanField(
         label="I have read and agree to the terms and conditions.",
