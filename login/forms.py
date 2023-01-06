@@ -60,6 +60,44 @@ class RegistrationForm(forms.ModelForm):
             'date_of_birth': DateInput()
         }
 
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        r = UserBase.objects.filter(email)
+        if r.count():
+            raise forms.ValidationError("Username already exists")
+        return email
+
+    def password2_check(self):
+        cd = self.cleaned_data
+        if cd['password'] != cd['password2']:
+            raise forms.ValidationError('Passwords do not match.')
+        return cd['password2']
+
+    def send_activation_email():
+        pass
+    # maybe delete
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['email'].widget.attrs.update(
+            {'class': 'form-control mb-3', 'placeholder': 'Email'}
+        )
+        self.fields['first_name'].widget.attrs.update(
+            {'class': 'form-control mb-3', 'placeholder': 'First Name'}
+        )
+        self.fields['last_name'].widget.attrs.update(
+            {'class': 'form-control mb-3', 'placeholder': 'Last Name'}
+        )
+        self.fields['password'].widget.attrs.update(
+            {'class': 'form-control mb-3', 'placeholder': 'Password'}
+        )
+        self.fields['password2'].widget.attrs.update(
+            {'class': 'form-control mb-3', 'placeholder': 'Confirm Password'}
+        )
+        #TODO: Finish adding attributes to widgets
+        #TODO: Need to add CSS styling that works with bootstrap for the forms
+
+
 class LoginForm(forms.ModelForm):
     pass
     
