@@ -32,10 +32,10 @@ class RegistrationForm(forms.ModelForm):
         error_messages={'required': 'Please enter a matching password.'}
         )
     date_of_birth = forms.DateField(
-        label="Date of Birth", widget=forms.DateInput,
+        label="Date of Birth", widget=forms.SelectDateWidget,
         error_messages={'required': 'Please enter a matching password.'}
     )
-    country = forms.ChoiceField(label='Repeat Password', 
+    country = forms.ChoiceField(label='Country of Residence', 
         widget=widgets.CountrySelectWidget, choices=countries,
         error_messages={'required': 'Please choose your country.'}
         )
@@ -80,19 +80,19 @@ class RegistrationForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['email'].widget.attrs.update(
-            {'class': 'form-control mb-3', 'placeholder': 'Email'}
+            {'class': 'form-control mb-3'}
         )
         self.fields['first_name'].widget.attrs.update(
-            {'class': 'form-control mb-3', 'placeholder': 'First Name'}
+            {'class': 'form-control mb-3'}
         )
         self.fields['last_name'].widget.attrs.update(
-            {'class': 'form-control mb-3', 'placeholder': 'Last Name'}
+            {'class': 'form-control mb-3'}
         )
         self.fields['password'].widget.attrs.update(
-            {'class': 'form-control mb-3', 'placeholder': 'Password'}
+            {'class': 'form-control mb-3'}
         )
         self.fields['password2'].widget.attrs.update(
-            {'class': 'form-control mb-3', 'placeholder': 'Confirm Password'}
+            {'class': 'form-control mb-3'}
         )
         #TODO: Finish adding attributes to widgets
         #TODO: Need to add CSS styling that works with bootstrap for the forms
