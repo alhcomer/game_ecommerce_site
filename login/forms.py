@@ -41,6 +41,11 @@ class RegistrationForm(forms.ModelForm):
         )
         # TODO: need to finish phone number widget validation
         # https://django-phonenumber-field.readthedocs.io/en/latest/reference.html#widgets
+
+    town_city = forms.CharField(
+        label="town/city", min_length=2,
+        max_length=40
+    )    
     phone_number = PhoneNumberField(
         label="Phone Number",
         widget=PhoneNumberPrefixWidget(   
@@ -62,7 +67,7 @@ class RegistrationForm(forms.ModelForm):
 
     def clean_email(self):
         email = self.cleaned_data['email']
-        r = UserBase.objects.filter(email)
+        r = UserBase.objects.filter(email=email)
         if r.count():
             raise forms.ValidationError("Username already exists")
         return email

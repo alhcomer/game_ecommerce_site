@@ -4,8 +4,10 @@ from phonenumber_field.phonenumber import PhoneNumber
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode
-from django.utils.encoding import force_bytes
+from django.utils.encoding import force_bytes, force_str
 from .token_generator import account_activation_token
+from django.http import HttpResponse
+
 
 def login(request):
     return render(request, 'login/login.html')
@@ -47,8 +49,11 @@ def sign_up(request):
                 'token': account_activation_token.make_token(user),
                 })
             user.email_user(subject=subject, message=message)
+            render(request, 'login/registration/authenticate-message.html')
+        else:
+            print(registration_form.errors.as_data())
+        return render(request, 'login/registration/sign-up.html', {'form': registration_form})
 
-            return redirect('authenticate')
     else:
         registration_form = RegistrationForm()
         return render(request, 'login/registration/sign-up.html', {'form': registration_form})

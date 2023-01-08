@@ -17,7 +17,7 @@
                               {% for field in form %}
                               {% if field.errors %}
                               <div class="alert alert-primary" role="alert">
-                                {{ field.label }}:  {{ field.errors|striptags}}
+                                {{ field.label }}:  {{ field.errors|striptags }}
                               </div>
                               {% endif %}
                               {% endfor %}
@@ -88,6 +88,14 @@
                                   </div>
                                 </div>
 
+                                <!-- Town/City input -->
+                                <div class="col-md-4 offset-md-4">
+                                  <div class="form-outline mb-4">
+                                    <label class="form-label">{{ form.town_city.label }}</label>
+                                    {{ form.town_city }}
+                                  </div>
+                                </div>
+
                                 <!-- Phone Number input -->
                                 <div class="col-md-4 offset-md-4">
                                   <div class="form-outline mb-4">
@@ -103,8 +111,6 @@
                                     {{ form.password }}
                                   </div>
                                 </div>
-
-                                
                           
                                 <!-- Repeat Password input -->
                                 <div class="col-md-4 offset-md-4">

@@ -48,8 +48,6 @@ class UserBase(AbstractBaseUser, PermissionsMixin):
                         'last_name', 'country', 'phone_number', 
                         'date_of_birth', 'town_city',]
 
-    def email_user():
-        pass
 
     class Meta:
         verbose_name = "Accounts"
