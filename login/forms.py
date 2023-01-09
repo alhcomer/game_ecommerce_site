@@ -4,6 +4,8 @@ from django_countries import widgets, countries
 from phonenumber_field.formfields import PhoneNumberField
 from django.forms.widgets import DateInput
 from phonenumber_field.widgets import PhoneNumberPrefixWidget
+from datetime import date
+from dateutil.relativedelta import relativedelta
 
 
 
@@ -31,8 +33,11 @@ class RegistrationForm(forms.ModelForm):
         label='Repeat Password', widget=forms.PasswordInput,
         error_messages={'required': 'Please enter a matching password.'}
         )
+        # TODO: Need to fix years available
     date_of_birth = forms.DateField(
-        label="Date of Birth", widget=forms.SelectDateWidget,
+        label="Date of Birth", widget=forms.SelectDateWidget(
+            years=[x for x in range(date.today().year-100, date.today().year-8)]
+        ),
         error_messages={'required': 'Please enter a matching password.'}
     )
     country = forms.ChoiceField(label='Country of Residence', 
@@ -78,9 +83,9 @@ class RegistrationForm(forms.ModelForm):
             raise forms.ValidationError('Passwords do not match.')
         return cd['password2']
 
-    def send_activation_email():
-        pass
-    # maybe delete
+    
+
+    # TODO: Finish adding validations for form fields
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

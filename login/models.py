@@ -4,6 +4,8 @@ from django_countries.fields import CountryField
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
+from django.core.mail import send_mail
+import os
 
 class CustomAccountManager(BaseUserManager):
     def create_superuser(self, email, username, password, **other_fields):
@@ -54,4 +56,15 @@ class UserBase(AbstractBaseUser, PermissionsMixin):
         verbose_name_plural = "Accounts"
 
     def __str__(self):
-        return self.username
+        return self.email
+
+    def email_user(self, subject, message, registrant):
+        send_mail(
+            subject=subject,
+            message=message,
+            recipient_list=[str(registrant), ],
+            from_email=os.getenv('EMAIL_ADDRESS'),
+            auth_user=os.getenv('EMAIL_ADDRESS'),
+            auth_password=os.getenv('EMAIL_PASSWORD'),
+            fail_silently=False,
+        )

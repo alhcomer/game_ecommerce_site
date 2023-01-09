@@ -7,5 +7,5 @@ app_name = "login"
 urlpatterns = [
     path('', views.login, name='login'),
     path('sign_up/', views.sign_up, name='sign_up'),
-    path('sign_up/authenticate', views.authenticate, name='authenticate')
+    path('sign_up/<slug:uidb64>/<slug:token>)/', views.authenticate, name='authenticate')
 ]

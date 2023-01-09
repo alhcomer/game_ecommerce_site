@@ -41,14 +41,14 @@ def sign_up(request):
             current_site = get_current_site(request)
             subject = 'Activate your Account'  
             message = render_to_string(
-                'login/registration/account_activation_email.html',
+                'login/registration/account-activation-email.html',
                 {
                 'user': user,
                 'domain': current_site.domain,
                 'uidb64': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': account_activation_token.make_token(user),
                 })
-            user.email_user(subject=subject, message=message)
+            user.email_user(subject=subject, message=message, registrant=user)
             render(request, 'login/registration/authenticate-message.html')
         else:
             print(registration_form.errors.as_data())
